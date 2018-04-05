@@ -53,6 +53,11 @@ namespace thirty_one
         [Route("gameboard")]
         public IActionResult Main()
         {
+            if(ViewBag.players != null)
+            {
+                ViewBag.players = null;
+            }
+
             // Initializing game
             int? NumPlayers = HttpContext.Session.GetInt32("NumPlayers");
             List<string> players = new List<string>();
@@ -79,17 +84,22 @@ namespace thirty_one
             ViewBag.players = new Dictionary<string, Player>();
             
             ViewBag.NumPlayers = NumPlayers;
+            if(ViewBag.players != null)
+            {
+                ViewBag.players.Clear();
+            }
             List<Player> Players = Game.CreateGame(players);
             int i = 1;
             foreach(var p in Players)
             {
                 ViewBag.players.Add("player" + i ,p);
                 i++;
+                foreach(var c in p.hand)
+                {
+                    System.Console.WriteLine($"{c.suit[0]}{c.value}");
+                }
             }
-            foreach(var entry in ViewBag.players)
-            {
-                System.Console.WriteLine(entry);
-            }
+            
             // End Intitializing
 
             // Hands
