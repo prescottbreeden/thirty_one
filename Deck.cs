@@ -40,7 +40,6 @@ namespace thirty_one
             if (current_card < NUMBER_OF_CARDS)
             {
                 player.hand.Add(deck[current_card++]);
-                System.Console.WriteLine($"{player.name} drew a card");
             }
             else
             {
@@ -53,6 +52,17 @@ namespace thirty_one
             player.hand.Add(discard_pile[0]);
             discard_pile.RemoveAt(0);
         }
-
+        public static void ShowDiscardPile()
+        {
+            if(discard_pile.Count == 0)
+            {
+                System.Console.WriteLine("Discard pile is empty");
+            }
+            else
+            {   
+                System.Console.WriteLine("Top card in discard pile stack:");
+                System.Console.WriteLine(discard_pile[0]);
+            }
+        }
     }
 }
