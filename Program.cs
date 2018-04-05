@@ -17,7 +17,10 @@ namespace thirty_one
             // BuildWebHost(args).Run();
 
             // game logic testing below:
-            GameInit.CreateGame(); 
+            Game.CreateGame(); 
+            Game.PrintAllHands();
+            Game.PrintAllHandValues();
+            Game.NextTurn();
         }
 
         // public static IWebHost BuildWebHost(string[] args) =>
