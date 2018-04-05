@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Players</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>
-    <body class="p-5">
-        <div class="container-fluid">
+    <!-- inser head -->
+    @await Html.PartialAsync("Head.cshtml")
+    <!-- end insert head -->
+    <body class="">
+        <div class="header">
+            <h2 class="tac">Welcome to 31 by 3!</h2>
+            <a href="/" class="tal"></a>
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="mx-auto w-50 p-5 border bg-light">
-                        <form class="mx-auto" action="players" method="post">
-                            <h3 class="mb-4">Welcome to the 31 by 3!</h3>
+                    <div class="mx-auto w-50 p-5 bubble-border">
+                        <form class="" action="players" method="post">
                             <div class="form-group">
-                                <p>Player 1 Name</p>
+                                <p>Player 1 Name:</p>
                                 <input type="text" class="form-control ml-2" name="player1" id="player1" value=" " placeholder="..">
                             </div>
                             <div class="form-group">
-                                <p>Player 2 Name</p>
+                                <p>Player 2 Name:</p>
                                 <input type="text" class="form-control ml-2" name="player2" id="player2" value=" " placeholder="..">
                             </div>
                             <div class="form-group">
-                                <p>Player 3 Name</p>
+                                <p>Player 3 Name:</p>
                                 <input type="text" class="form-control ml-2" name="player3" id="player3" value=" " placeholder="..">
                             </div>
                             <div class="form-group">
-                                <p>Player 4 Name</p>
+                                <p>Player 4 Name:</p>
                                 <input type="text" class="form-control ml-2" name="player4" id="player4" value=" " placeholder="..">
                             </div>
-                            <button class="btn btn-primary ml-2">Start Game</button>
+                            <button class="button ml-2">Start Game!</button>
                         </form>
                     </div>
                 </div>
