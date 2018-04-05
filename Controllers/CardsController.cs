@@ -20,7 +20,7 @@ namespace thirty_one
         [Route("players")]
         public IActionResult CreatePlayers(string player1, string player2, string player3, string player4) // Post route to process player submission. Instantiates all players and A.I.
         {
-            if(player1 != " ")
+            if(player1 != null)
             {
                 HttpContext.Session.SetString("player1", player1);
             }
