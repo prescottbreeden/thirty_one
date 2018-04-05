@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -52,8 +53,42 @@ namespace thirty_one
         [Route("gameboard")]
         public IActionResult Main()
         {
+            // Initializing game
             int? NumPlayers = HttpContext.Session.GetInt32("NumPlayers");
+            List<string> players = new List<string>();
+            string player1 = HttpContext.Session.GetString("player1");
+            if(player1 != null)
+            {
+                players.Add(player1);
+            }
+            string player2 = HttpContext.Session.GetString("player2");
+            if(player2 != null)
+            {
+                players.Add(player2);
+            }
+            string player3 = HttpContext.Session.GetString("player3");
+            if(player3 != null)
+            {
+                players.Add(player3);
+            }
+            string player4 = HttpContext.Session.GetString("player4");
+            if(player4 != null)
+            {
+                players.Add(player4);
+            }
+            ViewBag.player1 = player1;
+            ViewBag.player2 = player2;
+            ViewBag.player3 = player3;
+            ViewBag.player4 = player4;
             ViewBag.NumPlayers = NumPlayers;
+            Game.CreateGame(players);
+            // End Intitializing
+
+            // Hands
+
+
+
+
             return View();
         }
     }
