@@ -34,7 +34,7 @@ namespace thirty_one
             }
             if(player4 != null)
             {
-                HttpContext.Session.SetString("player4", player4)
+                HttpContext.Session.SetString("player4", player4);
             }
             return RedirectToAction("Main");
         }
