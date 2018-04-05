@@ -17,7 +17,7 @@ namespace thirty_one
             BuildWebHost(args).Run();
 
             // game logic testing below:
-            // Game.CreateGame(); 
+            // Game.CreateGame();
             // Game.PrintAllHands();
             // while(Deck.current_card<52)
             // {
@@ -26,7 +26,6 @@ namespace thirty_one
             //     System.Console.WriteLine("Top card in discard pile stack:");
             //     System.Console.WriteLine(Deck.discard_pile[0].suit);
             //     System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
-                
             // }
         }
         public static IWebHost BuildWebHost(string[] args) =>
