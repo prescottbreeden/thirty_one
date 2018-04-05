@@ -12,6 +12,7 @@ namespace thirty_one
         public static int size_of_hand = 3;
         public static int turn_counter;
         public static int next_turn;
+        public static string max_suit_type;
         
         public static void CreateGame()
         {
@@ -66,11 +67,98 @@ namespace thirty_one
 
         public static void NextTurn()
         {
+             // convert seat number to player array index value
             var current_player_turn = Players[next_turn-1];
-            Deck.DrawFromDeck(current_player_turn);
-            System.Console.WriteLine(current_player_turn);
+            System.Console.WriteLine($"{current_player_turn}");
+            if(turn_counter == 0)
+            { 
+                if (current_player_turn.hand_value == 31)
+                    System.Console.WriteLine("Winning condition met"); //LayDown()
+                
+                // Draw a card
+                Deck.DrawFromDeck(current_player_turn);   
+            }
+            else if(current_player_turn.num_suits.Max() == 3)
+            {
+                int max_Suit_Index = current_player_turn.num_suits.ToList().IndexOf(3);
+                // hearts == 0
+                // diamonds == 1
+                // spades == 2
+                // clubs == 3
+                switch(max_Suit_Index)
+                {
+                    case 0:
+                        max_suit_type = "Hearts";
+                        break;
+                    case 1:
+                        max_suit_type = "Diamonds";
+                        break;
+                    case 2:
+                        max_suit_type = "Spades";
+                        break;
+                    case 3:
+                        max_suit_type = "Clubs";
+                        break;
+                }
+                if (Deck.discard_pile[0].suit == max_suit_type)
+                {
+                    Deck.DrawFromDiscard(current_player_turn);
+                    System.Console.WriteLine($"{current_player_turn} drew FROM DISCARD PILE OMG!!!!");
+                }
+                else
+                {
+                    Deck.DrawFromDeck(current_player_turn);
+                }
+            }
+            else
+            {
+                Deck.DrawFromDeck(current_player_turn);
+                System.Console.WriteLine($"{current_player_turn} drew from deck");
+
+            }
+
+            // Hand size should be 4 now
+
+            // Evaluate value of hand
+            Player.CalculateHandValue(current_player_turn);
             System.Console.WriteLine(current_player_turn.hand_value);
 
+            // choose card to discard
+            if (current_player_turn.num_suits.Max() == 4)
+            {
+                Card min = current_player_turn.hand[0];
+                foreach(Card c in current_player_turn.hand)
+                {
+                    if(c.value < min.value)
+                        min = c;
+                }
+                Deck.discard_pile.Insert(0, min);
+                current_player_turn.hand.Remove(min);
+                System.Console.WriteLine($"{current_player_turn} discarded {min}");  
+            }
+            else if (current_player_turn.num_suits.Max() == 3)
+            {
+                int min_Suit_Index = current_player_turn.num_suits.ToList().IndexOf(1);
+                Deck.discard_pile.Insert(0, current_player_turn.hand[min_Suit_Index]);
+                current_player_turn.hand.RemoveAt(min_Suit_Index);
+                System.Console.WriteLine($"{current_player_turn} discarded a card.");  
+            }
+            else
+            {
+                Card min = current_player_turn.hand[0];
+                foreach(Card c in current_player_turn.hand)
+                {
+                    if(c.value < min.value)
+                        min = c;
+                }
+                Deck.discard_pile.Insert(0, min);
+                current_player_turn.hand.Remove(min);
+                System.Console.WriteLine($"{current_player_turn} discarded {min}");
+            }
+            turn_counter++;
+            next_turn++;
+            if (next_turn == 5)
+                next_turn = 1;
         }
     }
 }

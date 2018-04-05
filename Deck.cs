@@ -38,12 +38,17 @@ namespace thirty_one
         public static void DrawFromDeck(Player player)
         {
             if (current_card < NUMBER_OF_CARDS)
+            {
                 player.hand.Add(deck[current_card++]);
+                System.Console.WriteLine($"{player.name} drew a card");
+            }
             else
+            {
                 System.Console.WriteLine("No more cards!!");;
+            }
         }
         
-        public void DrawFromDiscard(Player player)
+        public static void DrawFromDiscard(Player player)
         {
             player.hand.Add(discard_pile[0]);
             discard_pile.RemoveAt(0);
