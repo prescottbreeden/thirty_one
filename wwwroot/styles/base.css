@@ -1,46 +1,3 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block; }
-
-body {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
 .green-bg {
   background-color: green; }
 
@@ -120,13 +77,18 @@ img {
 .m20 {
   margin: 20px; }
 
-.container .form-wrapper {
-  *zoom: 1; }
-  .container .form-wrapper:before, .container .form-wrapper:after {
-    content: " ";
-    display: table; }
-  .container .form-wrapper:after {
-    clear: both; }
+button, .button {
+  background-color: #051c37;
+  color: white;
+  padding: 7px 25px;
+  border: silver 2px solid;
+  border-radius: 10px;
+  margin: 1px 1px 1px 1px;
+  cursor: pointer; }
+  button:hover, .button:hover {
+    background-color: rgba(5, 28, 55, 0.8);
+    padding: 8px 26px;
+    margin: 0; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .large, .medium {
@@ -137,94 +99,53 @@ img {
 @media only screen and (min-device-width: 1024px) {
   .small, .medium {
     display: none; } }
+body {
+  background-color: #0a7a00;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png"); }
+
+.header {
+  width: 100%;
+  height: 90px;
+  background-color: #051c37;
+  color: white;
+  margin: 0 0 20px 0;
+  padding: 20px 0 0 0;
+  line-height: 50px; }
+  .header h2 {
+    font-size: 2.5em;
+    margin: 0; }
+
 .container {
   padding: 0 20px 20px 20px;
-  color: #3E423A; }
-  .container .header {
-    width: 100%;
-    height: 50px;
-    background-color: #3E423A;
-    color: white; }
-    .container .header h3 {
-      line-height: 50px;
-      font-size: 24px;
-      margin-left: 20px; }
-    .container .header a {
-      color: white;
-      text-decoration: none;
-      line-height: 50px;
-      font-size: 20px;
-      margin: 0 20px; }
-      .container .header a:hover {
-        color: #F2D03B; }
+  color: white; }
   .container h1 {
     margin-bottom: 20px; }
   .container h2 {
-    margin: 30px 20px 0px 0px; }
-  .container .required {
-    font-size: 10px;
-    margin-bottom: 20px; }
-  .container .book-review-tile .review-desc {
-    word-wrap: break-word;
-    overflow-wrap: break-word; }
-  .container .rating-box {
-    width: 100%;
-    border: 1px solid #3E423A;
-    padding: 20px;
-    height: 300px;
-    overflow: scroll; }
-  .container .row {
-    margin-bottom: 10px; }
-  .container .box {
-    max-height: 300px;
-    border: 2px solid gray;
-    overflow: scroll; }
-  .container .form-wrapper {
-    padding: 0 50px; }
-    .container .form-wrapper .button {
-      margin: 20px 0;
-      padding: 5px 30px;
-      font-size: 16px;
-      color: white;
-      background-color: #417378;
-      border: 2px solid #F4F7D9;
-      -webkit-transition: color 0.7s ease;
-      -moz-transition: color 0.7s ease;
-      -ms-transition: color 0.7s ease;
-      -o-transition: color 0.7s ease;
-      transition: color 0.7s ease;
-      -webkit-transition: background-color 0.3s ease;
-      -moz-transition: background-color 0.3s ease;
-      -ms-transition: background-color 0.3s ease;
-      -o-transition: background-color 0.3s ease;
-      transition: background-color 0.3s ease; }
-      .container .form-wrapper .button:hover {
-        background-color: #F4F7D9;
-        color: #417378;
-        border: 2px solid #3E423A;
-        cursor: pointer; }
-    .container .form-wrapper textarea {
-      width: 100%; }
-    .container .form-wrapper .mr0 {
-      margin-right: 0px; }
-    .container .form-wrapper .input-box {
-      border: 1px solid #A4CFBE;
-      max-width: 75%;
-      width: 100%;
-      padding-right: 20px; }
-  .container .bdr-r {
-    border-right: 2px solid #6C6E58;
-    padding-right: 60px; }
-  .container .errors {
-    color: red;
-    max-width: 95%;
-    height: auto; }
-    .container .errors ul {
-      margin: 5px 0 5px 20px;
-      list-style: circle; }
-      .container .errors ul li {
-        font-size: 0.8em; }
-  .container form {
-    width: 100%; }
+    margin: 15px 0 20px 0px; }
+  .container .bubble-border {
+    background-color: #F4F7D9;
+    border-radius: 25px;
+    border: 11px solid #051c37;
+    padding: 10px;
+    color: #051c37; }
+  .container .rules {
+    min-height: 300px;
+    margin: 30px 0px;
+    padding: 20px; }
+  .container .sidebar .sidebar-buffer {
+    min-height: 600px;
+    margin: 0 10px 30px 0px;
+    padding-left: 20px; }
+  .container .content {
+    min-height: 600px;
+    padding: 20px; }
+    .container .content .hand-container {
+      margin-top: 20px; }
+      .container .content .hand-container .hand .hand-buttons .discard-btn {
+        padding: 7px 20px; }
+        .container .content .hand-container .hand .hand-buttons .discard-btn:hover {
+          padding: 8px 21px; }
+      .container .content .hand-container .hand .hand-buttons button {
+        text-align: center; }
 
 /*# sourceMappingURL=base.css.map */

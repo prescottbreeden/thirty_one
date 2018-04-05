@@ -9,44 +9,69 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="~/styles/base.css"/>
     </head>
     <body class="">
         <div class="header">
-            <h3 class="tac">Welcome to the 31 by 3!</h3>
+            <h2 class="tac">Welcome to 31 by 3!</h2>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-3 sidebar">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="rules">
-                                <h1>31 by 3</h1>
-                                <ul>
-                                    <li>Rule 1</li>
-                                    <li>Rule 2</li>
-                                    <li>Rule 3</li>
-                                    <li>Rule 4</li>
-                                    <li>Rule 5</li>
-                                </ul>
-                            </div>
+                <div class="col-12">
+                    <div class="rules bubble-border clearfix">
+                        <h2>Objective:</h2>
+                        <p>The goal is to obtain a hand that totals 31 in cards of one suit; or to have a hand at the showdown whose count in one suit is higher than that of any other player.</p>
+                        <h2>Card Values/Scoring</h2>
+                        <p>An Ace counts 11 points, face cards count 10 points, and all other cards count their face value</p>
+                        <h2>The Play:</h2>
+                        <p>Before play begins, all players put an equal amount of chips into a pot. The player on the dealer's left has the first turn. On each turn, a player may take one card from the widow and replace it with one card from his hand (face up). (Variation: Players may exchange any number of cards with the widow in this manner.)</p>
+                        <p>Players take turns, clockwise around the table, until one player is satisfied that the card values he holds will likely beat the other players. He indicates this by "knocking" on the table. All other players then get one more turn to exchange cards. Then there is a showdown in which the players reveal their hands and compare values. The player with the highest total value of cards of the same suit wins the pot.</p>
+                        <p>If there is a tie for the highest score, the player with the highest-ranking card wins. Example: K, Q, 6 (total 26) would beat Q, 9, 7 (also total 26). If there is a tie in the highest cards, the next highest cards are compared, and so on.</p>
+                        <p>Any time a player holds exactly 31, he may "knock" immediately, and he wins the pot. If a player knocks before the first round of exchanges have begun, the showdown occurs immediately with no exchange of cards.</p>
+                        <p>After the pot has been won, all the players put in chips for the next hand.</p>
+                        <div class="float-right">
+                            <!-- add transition here -->
+                            <button>Got it! Let's Play!</button>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="house-rules">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-3 sidebar">
+                    <div class="sidebar-buffer bubble-border">
                         <div class="row">
                             <div class="col-12">
-                                <h1>House Rules</h1>
-                                <ul>
-                                    <li>Checkbox 1</li>
-                                    <li>Checkbox 2</li>
-                                    <li>Checkbox 3</li>
-                                    <li>Checkbox 4</li>
-                                    <li>Checkbox 5</li>
-                                </ul>
+                                <div class="sidebar-rules">
+                                    <h2>31 by 3</h2>
+                                    <h4>Rule Reminders:</h4>
+                                    <ul>
+                                        <li>Try to total 31</li>
+                                        <li>Same Suit</li>
+                                        <li>Ace = 11</li>
+                                        <li>10-K = 10</li>
+                                        <li>Knock for Last Turn</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="house-rules">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>House Rules</h4>
+                                    <ul>
+                                        <li>Checkbox 1</li>
+                                        <li>Checkbox 2</li>
+                                        <li>Checkbox 3</li>
+                                        <li>Checkbox 4</li>
+                                        <li>Checkbox 5</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-9 content">
+                <div class="col-12 col-md-9 content bubble-border">
                     <div class="row deck-area">
                         <div class="col-12 col-md-6">
                             <div class="row draw">
@@ -57,7 +82,7 @@
                                     <form action="/drawtohand" method="post">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="submit" value="Draw from Deck">
+                                                <input type="submit" class="button" value="Draw from Deck">
                                             </div>
                                         </div>
                                     </form>
@@ -73,7 +98,7 @@
                                     <form action="/discardtohand" method="post">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="submit" value="Draw from Discard">
+                                                <input type="submit" class="button" value="Draw from Discard">
                                             </div>
                                         </div>
                                     </form>
@@ -90,7 +115,7 @@
                                     <div class="col-10">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="row">
+                                                <div class="row hand-labels">
                                                     <div class="col-12 col-md-6">
                                                         <h3>Player Name Here</h3>
                                                     </div>
@@ -108,6 +133,7 @@
                                                             <div class="col-12">
                                                                 <div class="card-anchor">
                                                                     A
+                                                                    <!-- a card should go here -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -167,12 +193,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-2 hand-buttons">
                                         <div class="row">
                                             <div class="col-12">
                                                 <!-- feel free to put these inside forms if easier/required. Make sure the form is instantiated inside of the col-12 -->
                                                 <!-- discard card button -->
-                                                <button>Discard</button>
+                                                <button class="discard-btn">Discard</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -186,8 +212,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- END OF HAND 1 -->
                         </div>
+                        <!-- END OF HAND 1 -->
+                        <div class="divider"></div>
                     </div>
                 </div>
             </div>
