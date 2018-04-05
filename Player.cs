@@ -7,6 +7,7 @@ namespace thirty_one
     public class Player
     {
         public string name;
+        public bool isHuman;
         public int tokens;
         public List<Card> hand = new List<Card>();
         public List<Card> hearts = new List<Card>();
@@ -66,7 +67,7 @@ namespace thirty_one
                     player.clubs_value += player.hand[i].value;                
                 }
             }
-            // find highest value suit - set to hand value of player - NOT WORKING
+            // find highest value suit - set to hand value of player - WORKING
             player.suit_values[0] = player.hearts_value;
             player.suit_values[1] = player.diamonds_value;
             player.suit_values[2] = player.spades_value;
