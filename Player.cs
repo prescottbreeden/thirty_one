@@ -23,12 +23,14 @@ namespace thirty_one
         public int spades_value {get; set; }
         public int diamonds_value {get; set; }
         public int[] suit_values = new int[4];
+        public bool knocked;
 
         public Player(string name)
         {
             this.name = name;
             this.tokens = 3;
             this.isDealer = false;
+            this.knocked = false;
         }
 
         public static void CalculateHandValue(Player player)

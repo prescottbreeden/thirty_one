@@ -14,6 +14,7 @@ namespace thirty_one
         public static int next_turn;
         public static string max_suit_type;
         public static int player_choice;
+        public static bool knock_status;
         
         public static List<Player> CreateGame(List<string> players)
         {
@@ -26,8 +27,6 @@ namespace thirty_one
             {
                 player.isHuman = true;
             }
-            System.Console.WriteLine("PLAYERS COUNT:  " + Players.Count);
-            System.Console.WriteLine("total players: " + total_players);
             int comp_players = total_players-Players.Count;
             // fill remainder of table with computer players
 
@@ -69,28 +68,25 @@ namespace thirty_one
         {
              // convert seat number to player array index value
             var current_player_turn = Players[next_turn-1];
+            if (current_player_turn.knocked == true)
+            {
+                EndRound(current_player_turn);
+                return;
+            }
             System.Console.WriteLine($"{current_player_turn}");
             System.Console.WriteLine("--");
             Deck.ShowDiscardPile();
             System.Console.WriteLine("--");
+
             if (current_player_turn.isHuman == true)
             {
                 //call human controls
-                System.Console.WriteLine("PLAYER IS HUMAN, CHECK WORKED!!!!!");
                 HumanTurn(current_player_turn);
             }
             else
             {
                 //call AI to play for computer turn
-                if(turn_counter == 0)
-                { 
-                    if (current_player_turn.hand_value == 31)
-                        System.Console.WriteLine("Winning condition met"); //LayDown()
-                    // fix win condition - FIX
-                    // Draw a card
-                    Deck.DrawFromDeck(current_player_turn);   
-                }
-                else if(current_player_turn.num_suits.Max() == 3)
+                if(current_player_turn.num_suits.Max() == 3)
                 {
                     int max_Suit_Index = current_player_turn.num_suits.ToList().IndexOf(3);
                     // hearts == 0
@@ -112,11 +108,19 @@ namespace thirty_one
                             max_suit_type = "Clubs";
                             break;
                     }
-                    if (Deck.discard_pile[0].suit == max_suit_type && Deck.discard_pile.Count > 0)
-                    // and card is lower than their highest value - FIX
+                    if (Deck.discard_pile[0].suit == max_suit_type)
                     {
-                        Deck.DrawFromDiscard(current_player_turn);
-                        System.Console.WriteLine($"{current_player_turn.name} drew from discard pile");
+                        Card min = current_player_turn.hand[0];
+                        foreach(Card c in current_player_turn.hand)
+                        {
+                            if(c.value < min.value)
+                                min = c;
+                        }
+                        if (Deck.discard_pile[0].value > min.value)
+                        {
+                            Deck.DrawFromDiscard(current_player_turn);
+                            System.Console.WriteLine($"{current_player_turn.name} drew from discard pile");
+                        }
                     }
                     else
                     {
@@ -128,62 +132,79 @@ namespace thirty_one
                     Deck.DrawFromDeck(current_player_turn);
                     System.Console.WriteLine($"{current_player_turn.name} drew from deck");
                 }
-            }
-            System.Threading.Thread.Sleep(3000);
             
-            //-------------------------//
-            // Hand size is now 4 cards//
-            //-------------------------//
+                System.Threading.Thread.Sleep(3000);
+                
+                //-------------------------//
+                // Hand size is now 4 cards//
+                //-------------------------//
 
-            // Evaluate value of current hand
-            Player.CalculateHandValue(current_player_turn);
-            System.Console.WriteLine(current_player_turn.hand_value);
+                // Evaluate value of current hand
+                Player.CalculateHandValue(current_player_turn);
+                System.Console.WriteLine(current_player_turn.hand_value);
 
-            // choose card to discard
-            if (current_player_turn.num_suits.Max() == 4)
-            {
-                Card min = current_player_turn.hand[0];
-                foreach(Card c in current_player_turn.hand)
+                // choose card to discard
+                if (current_player_turn.num_suits.Max() == 4)
                 {
-                    if(c.value < min.value)
-                        min = c;
+                    Card min = current_player_turn.hand[0];
+                    foreach(Card c in current_player_turn.hand)
+                    {
+                        if(c.value < min.value)
+                            min = c;
+                    }
+                    Deck.discard_pile.Insert(0, min);
+                    current_player_turn.hand.Remove(min);
+                    System.Console.WriteLine($"{current_player_turn.name} discarded {min}");  
                 }
-                Deck.discard_pile.Insert(0, min);
-                current_player_turn.hand.Remove(min);
-                System.Console.WriteLine($"{current_player_turn.name} discarded {min}");  
+                else if (current_player_turn.num_suits.Max() == 3)
+                {
+                    int min_Suit_Index = current_player_turn.num_suits.ToList().IndexOf(1);
+                    Deck.discard_pile.Insert(0, current_player_turn.hand[min_Suit_Index]);
+                    current_player_turn.hand.RemoveAt(min_Suit_Index);
+                    System.Console.WriteLine($"{current_player_turn.name} discarded {Deck.discard_pile[0]}.");  
+                }
+                else
+                {
+                    Card min = current_player_turn.hand[0];
+                    foreach(Card c in current_player_turn.hand)
+                    {
+                        if(c.value < min.value)
+                            min = c;
+                    }
+                    Deck.discard_pile.Insert(0, min);
+                    current_player_turn.hand.Remove(min);
+                    System.Console.WriteLine($"{current_player_turn} discarded {min}");
+                }
+
+                //knock check
+                if (current_player_turn.hand_value > 20)
+                {
+                    Knock(current_player_turn);
+                }
             }
-            else if (current_player_turn.num_suits.Max() == 3)
+            if (current_player_turn.hand_value == 31)
             {
-                int min_Suit_Index = current_player_turn.num_suits.ToList().IndexOf(1);
-                Deck.discard_pile.Insert(0, current_player_turn.hand[min_Suit_Index]);
-                current_player_turn.hand.RemoveAt(min_Suit_Index);
-                System.Console.WriteLine($"{current_player_turn.name} discarded {Deck.discard_pile[0]}.");  
+                LayDown(current_player_turn);
             }
             else
             {
-                Card min = current_player_turn.hand[0];
-                foreach(Card c in current_player_turn.hand)
-                {
-                    if(c.value < min.value)
-                        min = c;
-                }
-                Deck.discard_pile.Insert(0, min);
-                current_player_turn.hand.Remove(min);
-                System.Console.WriteLine($"{current_player_turn} discarded {min}");
+                turn_counter++;
+                next_turn++;
+                if (next_turn == 5)
+                    next_turn = 1;
+                System.Threading.Thread.Sleep(3000);
             }
-            turn_counter++;
-            next_turn++;
-            if (next_turn == 5)
-                next_turn = 1;
-            System.Console.WriteLine(next_turn);
-            System.Threading.Thread.Sleep(3000);
         }
         public static void HumanTurn(Player player)
         {
             PrintCurrentHand(player);
                 System.Console.WriteLine("Select an Option");
                 System.Console.WriteLine("1. Draw from Deck");
-                System.Console.WriteLine("1. Draw from discard pile");
+                System.Console.WriteLine("2. Draw from discard pile");
+                if (Game.knock_status == false)
+                {
+                    System.Console.WriteLine("3. Knock");
+                }
                 player_choice = Int32.Parse(Console.ReadLine());
                 switch(player_choice)
                 {
@@ -193,22 +214,77 @@ namespace thirty_one
                     case 2:
                         Deck.DrawFromDiscard(player);
                         break;
+                    case 3:
+                        Knock(player);
+                        break;
                 }
-                System.Console.WriteLine("Select a card to discard");
-                for(var i = 1; i <= player.hand.Count; i++)
+                if (player.knocked == true)
                 {
-                    System.Console.WriteLine($"{i}. {player.hand[i-1]}");
+                    System.Console.WriteLine();
                 }
-                player_choice = Int32.Parse(Console.ReadLine());
-                Deck.discard_pile.Insert(0, player.hand[player_choice-1]);
-                player.hand.Remove(player.hand[player_choice-1]);
-                System.Console.WriteLine($"{player} discarded {player.hand[player_choice-1]}");
-                turn_counter++;
-                next_turn++;
-                if (next_turn == 5)
-                    next_turn = 1;
-                System.Console.WriteLine(next_turn);
-                System.Threading.Thread.Sleep(3000);
+                else
+                {    
+                    System.Console.WriteLine("Select a card to discard");
+                    for(var i = 1; i <= player.hand.Count; i++)
+                    {
+                        System.Console.WriteLine($"{i}. {player.hand[i-1]}");
+                    }
+                    player_choice = Int32.Parse(Console.ReadLine());
+                    player_choice = player_choice-1;
+                    Deck.discard_pile.Insert(0, player.hand[player_choice]);
+                    player.hand.Remove(player.hand[player_choice]);
+                    System.Console.WriteLine($"{player.name} discarded {Deck.discard_pile[0]}.");
+                    // System.Console.WriteLine($"{player.name}'s hand value is now {player.hand_value}.");
+                }
+        }
+        public static void Knock(Player knocker)
+        {
+            System.Console.WriteLine($"{knocker} is a knocker... that's kinda weird...");
+            Game.knock_status = true;
+            knocker.knocked = true;
+        }
+        public static void LayDown(Player winner)
+        {
+            System.Console.WriteLine($"{winner.name} wins the round!");
+            foreach (Player player in Players)
+            {
+               if (player != winner)
+               {
+                   player.tokens--;
+               }
+            }
+            GameInit.MainMenu();
+        }
+        public static void EndRound(Player knocker)
+        {
+            foreach (Player player in Players)
+            {
+                if (player != knocker)
+                {
+                    if (player.hand_value > knocker.hand_value)
+                    {
+                        knocker.tokens--;
+                        return;
+                    }
+                }
+                else
+                {
+                    int lowest_hand = knocker.hand_value;
+                    foreach(Player p in Players)
+                    {
+                        if(p.hand_value < lowest_hand)
+                            lowest_hand = p.hand_value;
+                    }
+                    foreach(Player p in Players)
+                    {
+                        if (p.hand_value == lowest_hand)
+                        {
+                            p.tokens--;
+                        }
+                    }
+                }
+            }
+            GameInit.MainMenu();
         }
         public static void PrintAllHands()
         {
