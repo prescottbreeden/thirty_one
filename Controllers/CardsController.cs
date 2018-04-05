@@ -24,7 +24,14 @@ namespace thirty_one
             {
                 HttpContext.Session.SetString("player1", player1);
             }
-            return RedirectToAction("PlayerSelect");
+            return RedirectToAction("Main");
+        }
+
+        [HttpGet]
+        [Route("gameboard")]
+        public IActionResult Main()
+        {
+            return View();
         }
     }
 }
