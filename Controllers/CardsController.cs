@@ -10,7 +10,7 @@ namespace thirty_one
         [HttpGet]
         [Route("")]
 
-        public IActionResult GameBoard()
+        public IActionResult PlayerSelect()
         {
             return View();
         }
