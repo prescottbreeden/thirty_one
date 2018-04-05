@@ -18,11 +18,11 @@ namespace thirty_one
 
             // game logic testing below:
             GameInit.GameInitialization();
-            Game.CreateGame(); 
-            Game.PrintAllHands();
+            List<string> player_names = GameInit.CreatePlayers();
+            Game.CreateGame(player_names);
+            Game.PrintAllHandValues(); 
             while(Deck.current_card<52)
             {
-                Game.PrintAllHandValues();
                 System.Console.WriteLine("--------------------");
                 System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
                 System.Console.WriteLine("--------------------");

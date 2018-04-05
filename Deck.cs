@@ -46,6 +46,13 @@ namespace thirty_one
                 System.Console.WriteLine("No more cards!!");;
             }
         }
+        public static void MoveTopCardToDiscardPile()
+        {
+            if(current_card < NUMBER_OF_CARDS)
+            {
+                discard_pile.Insert(0, deck[current_card++]);
+            }
+        }
         
         public static void DrawFromDiscard(Player player)
         {
@@ -56,7 +63,7 @@ namespace thirty_one
         {
             if(discard_pile.Count == 0)
             {
-                System.Console.WriteLine("Discard pile is empty");
+                System.Console.WriteLine("Error... Discard pile is empty");
             }
             else
             {   
