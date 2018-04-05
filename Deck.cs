@@ -19,6 +19,7 @@ namespace thirty_one
             int[] values = {2,3,4,5,6,7,8,9,10,11,12,13,14};
             deck = new Card[NUMBER_OF_CARDS];
             currentCard = 0;
+            ranNum = new Random();
             for(int count = 0; count < deck.Length; count++)
                 deck[count] = new Card(faces[count % 13], suits[count / 13], values[count % 13]);
 

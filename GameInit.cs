@@ -5,12 +5,12 @@ namespace thirty_one
 {
     public class GameInit
     {
-        public List<Player> Players = new List<Player>();
-        public int TokenPot;
-        public int total_players = 4;
-        public int size_of_hand = 3;
+        public static List<Player> Players = new List<Player>();
+        public static int TokenPot;
+        public static int total_players = 4;
+        public static int size_of_hand = 3;
         
-        public GameInit()
+        public static void CreateGame()
         {
             for(var i = 1; i <= total_players; i++)
             {

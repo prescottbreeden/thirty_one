@@ -14,12 +14,15 @@ namespace thirty_one
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            // BuildWebHost(args).Run();
+
+            // game logic testing below:
+            GameInit.CreateGame(); 
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        // public static IWebHost BuildWebHost(string[] args) =>
+        //     WebHost.CreateDefaultBuilder(args)
+        //         .UseStartup<Startup>()
+        //         .Build();
     }
 }
