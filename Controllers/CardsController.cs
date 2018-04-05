@@ -24,6 +24,18 @@ namespace thirty_one
             {
                 HttpContext.Session.SetString("player1", player1);
             }
+            if(player2 != null)
+            {
+                HttpContext.Session.SetString("player2", player2);
+            }
+            if(player3 != null)
+            {
+                HttpContext.Session.SetString("player3", player3);
+            }
+            if(player4 != null)
+            {
+                HttpContext.Session.SetString("player4", player4)
+            }
             return RedirectToAction("Main");
         }
 
