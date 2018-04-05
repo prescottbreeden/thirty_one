@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<script>
+    $(document).ready(function(){
+
+    })
+</script>
 <html lang="en">
     <!-- inser head -->
     @await Html.PartialAsync("Head.cshtml")
@@ -110,12 +115,16 @@
                     </div>
                     <div class="row hand-container">
                         <div class="col-12">
-                            <!-- insert hand  -->
-                            @await Html.PartialAsync("HandBase.cshtml")
-                            <!-- end insert hand -->
-                            <!-- insert hand -->
-                            @await Html.PartialAsync("HandBase.cshtml")
-                            <!-- end insert hand -->
+                            
+                            @for(int i = 0; i < ViewBag.NumPlayers; i++)
+                            {
+                                <!-- insert hand  -->
+                                @await Html.PartialAsync("HandBase.cshtml")
+                                <!-- end insert hand -->
+                            }
+                            
+                            
+                           
                         </div>
                     </div>
                 </div>
