@@ -14,12 +14,24 @@ namespace thirty_one
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
-        }
+            // BuildWebHost(args).Run();
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+            // game logic testing below:
+            Game.CreateGame(); 
+            Game.PrintAllHands();
+            while(Deck.current_card<52)
+            {
+                Game.PrintAllHandValues();
+                Game.NextTurn();
+                System.Console.WriteLine("Top card in discard pile stack:");
+                System.Console.WriteLine(Deck.discard_pile[0].suit);
+                System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
+                
+            }
+        }
+        // public static IWebHost BuildWebHost(string[] args) =>
+        //     WebHost.CreateDefaultBuilder(args)
+        //         .UseStartup<Startup>()
+        //         .Build();
     }
 }
