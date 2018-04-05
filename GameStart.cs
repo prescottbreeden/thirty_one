@@ -54,7 +54,22 @@ namespace thirty_one
                 player_names.Add(choice);
             }
             return player_names;
-            
+        }
+        public static void MainMenu()
+        {
+            System.Console.WriteLine("Would you like to play again?");
+            System.Console.WriteLine("1. Yes.");
+            System.Console.WriteLine("2. No, I hate fun.");
+            choice = System.Console.ReadLine();
+            switch(choice)
+            {
+                case "1":
+                    System.Console.WriteLine("Well too bad this is a demo!");
+                    break;
+                case "2":
+                    System.Console.WriteLine("Thanks for playing, grumpy-pants!");
+                    break;
+            }
         }
     }
     

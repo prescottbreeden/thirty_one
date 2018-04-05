@@ -20,7 +20,6 @@ namespace thirty_one
             GameInit.GameInitialization();
             List<string> player_names = GameInit.CreatePlayers();
             Game.CreateGame(player_names);
-            Game.PrintAllHandValues(); 
             while(Deck.current_card<52)
             {
                 System.Console.WriteLine("--------------------");
