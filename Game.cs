@@ -30,7 +30,9 @@ namespace thirty_one
             System.Console.WriteLine("total players: " + total_players);
             int comp_players = total_players-Players.Count;
             // fill remainder of table with computer players
+
             for(int i = 0; i < comp_players; i++)
+
             {
                 Players.Add(new Player($"Computer {i+1}"));
                 System.Console.WriteLine($"Making Player: Computer {i+1}");

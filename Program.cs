@@ -14,9 +14,10 @@ namespace thirty_one
     {
         public static void Main(string[] args)
         {
-            // BuildWebHost(args).Run();
+            BuildWebHost(args).Run();
 
             // game logic testing below:
+
             GameInit.GameInitialization();
             List<string> player_names = GameInit.CreatePlayers();
             Game.CreateGame(player_names);
@@ -27,12 +28,14 @@ namespace thirty_one
                 System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
                 System.Console.WriteLine("--------------------");
                 Game.NextTurn();
+
                 
-            }
+            // }
+
         }
-        // public static IWebHost BuildWebHost(string[] args) =>
-        //     WebHost.CreateDefaultBuilder(args)
-        //         .UseStartup<Startup>()
-        //         .Build();
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
     }
 }

@@ -78,11 +78,6 @@ namespace thirty_one
             player.num_suits[1] = player.diamonds.Count;
             player.num_suits[2] = player.spades.Count;
             player.num_suits[3] = player.clubs.Count;
-        }
-
-        public override string ToString()
-        {
-            return name + " in seat " + player_seat;
-        }    
+        } 
     }
 }
