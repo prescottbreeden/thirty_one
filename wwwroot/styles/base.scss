@@ -11,8 +11,8 @@
 @import "responsive/3desktop";
 
 body{
-    background-color: #0a7a00;
-    background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+    background-color: #657a64;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 }
 
 .header{
@@ -39,10 +39,11 @@ body{
     }
     .bubble-border{
         background-color: $t-gray;
-        border-radius: 25px;
+        // border-radius: 25px;
         border: 11px solid $b-blue;
         padding: 10px;
         color: $b-blue;
+
     }
     .rules{
         min-height: 300px;
@@ -53,7 +54,13 @@ body{
        .sidebar-buffer{
             min-height: 600px;
             margin: 0 10px 30px 0px;
-            padding-left: 20px;
+            padding: 0 20px;
+            h2{
+                border-bottom: 1px solid $b-blue;
+            }
+            ul{
+                padding-left: 18px;
+            }
        }
     }
     .content{
@@ -61,10 +68,30 @@ body{
         padding: 20px;
         .deck-area{
             //box for
+            // border: 1px solid green;
+            .b-wrap{
+                text-align: center;
+                width: 171px;
+                margin: 0 auto
+            }
+            .b-wide{
+                width: 191px;
+            }
             .draw{
+                // border: 1px solid saddlebrown;
 
             }
+            .draw-deck{
+                max-width: 40%;
+                margin: 0 auto;
+                img{
+                    width: 100%;
+                    height: auto;
+
+                }
+            }
             .discard{
+                // border: 1px solid orangered;
 
             }
         }
@@ -72,11 +99,26 @@ body{
             margin-top: 20px;
 
             .hand{
+                padding: 10px;
+                border: 1px solid $b-blue;
+                margin-bottom: 25px;
+                background-image: url("/img/bg-tile-tan.png");
+                min-height: 250px;
+                position: relative;
 
                 .hand-labels{
-
+                    h3{
+                        font-size: 1.3em;
+                    }
                 }
                 .hand-buttons{
+                    .turn-indicator{
+                        font-size: 1.5em;
+                        min-height: 40px;
+                        i{
+                            width: 100%;
+                        }
+                    }
                     .discard-btn{
                         padding: 7px 20px;
                         &:hover{
@@ -84,7 +126,7 @@ body{
                         }
                     }
                     button{
-                        // width: 100%;
+                        width: 100%;
                         text-align: center;
                     }
                 }

@@ -40,20 +40,49 @@
 .tar {
   text-align: right; }
 
-.divider {
-  border-bottom: 3px solid #3E423A;
-  -webkit-box-shadow: 1px 7px 3px -4px #6c6e58;
-  -moz-box-shadow: 1px 7px 3px -4px #6c6e58;
-  box-shadow: 1px 7px 3px -4px #6c6e58; }
+.tl-arrow {
+  position: absolute;
+  top: -2px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #051c37;
+  transform: rotate(-45deg); }
 
-.divider-small {
-  -webkit-box-shadow: 0px 2px 4px 1px #6c6e58;
-  -moz-box-shadow: 0px 2px 4px 1px #6c6e58;
-  box-shadow: 0px 2px 4px 1px #6c6e58;
-  border-bottom: 3px solid #3E423A;
-  width: 80%;
-  margin: 0 auto;
-  height: 1px; }
+.tr-arrow {
+  position: absolute;
+  top: -2px;
+  right: -7px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #051c37;
+  transform: rotate(45deg); }
+
+.bl-arrow {
+  position: absolute;
+  bottom: -2px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #051c37;
+  transform: rotate(-135deg); }
+
+.br-arrow {
+  position: absolute;
+  bottom: -3px;
+  right: -7px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #051c37;
+  transform: rotate(135deg); }
 
 .float-right {
   float: right; }
@@ -77,14 +106,17 @@ img {
 .m20 {
   margin: 20px; }
 
+.m0a {
+  margin: 0 auto; }
+
 button, .button {
   background-color: #051c37;
   color: white;
   padding: 7px 25px;
   border: silver 2px solid;
-  border-radius: 10px;
   margin: 1px 1px 1px 1px;
-  cursor: pointer; }
+  cursor: pointer;
+  max-width: 100%; }
   button:hover, .button:hover {
     background-color: rgba(5, 28, 55, 0.8);
     padding: 8px 26px;
@@ -100,8 +132,8 @@ button, .button {
   .small, .medium {
     display: none; } }
 body {
-  background-color: #0a7a00;
-  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png"); }
+  background-color: #657a64;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png"); }
 
 .header {
   width: 100%;
@@ -124,7 +156,6 @@ body {
     margin: 15px 0 20px 0px; }
   .container .bubble-border {
     background-color: #F4F7D9;
-    border-radius: 25px;
     border: 11px solid #051c37;
     padding: 10px;
     color: #051c37; }
@@ -135,17 +166,48 @@ body {
   .container .sidebar .sidebar-buffer {
     min-height: 600px;
     margin: 0 10px 30px 0px;
-    padding-left: 20px; }
+    padding: 0 20px; }
+    .container .sidebar .sidebar-buffer h2 {
+      border-bottom: 1px solid #051c37; }
+    .container .sidebar .sidebar-buffer ul {
+      padding-left: 18px; }
   .container .content {
     min-height: 600px;
     padding: 20px; }
+    .container .content .deck-area .b-wrap {
+      text-align: center;
+      width: 171px;
+      margin: 0 auto; }
+    .container .content .deck-area .b-wide {
+      width: 191px; }
+    .container .content .deck-area .draw-deck {
+      max-width: 40%;
+      margin: 0 auto; }
+      .container .content .deck-area .draw-deck img {
+        width: 100%;
+        height: auto; }
     .container .content .hand-container {
       margin-top: 20px; }
-      .container .content .hand-container .hand .hand-buttons .discard-btn {
-        padding: 7px 20px; }
-        .container .content .hand-container .hand .hand-buttons .discard-btn:hover {
-          padding: 8px 21px; }
-      .container .content .hand-container .hand .hand-buttons button {
-        text-align: center; }
+      .container .content .hand-container .hand {
+        padding: 10px;
+        border: 1px solid #051c37;
+        margin-bottom: 25px;
+        background-image: url("/img/bg-tile-tan.png");
+        min-height: 250px;
+        position: relative; }
+        .container .content .hand-container .hand .hand-labels h3 {
+          font-size: 1.3em; }
+        .container .content .hand-container .hand .hand-buttons .turn-indicator {
+          font-size: 1.5em;
+          min-height: 40px; }
+          .container .content .hand-container .hand .hand-buttons .turn-indicator i {
+            width: 100%; }
+        .container .content .hand-container .hand .hand-buttons .discard-btn {
+          padding: 7px 20px; }
+          .container .content .hand-container .hand .hand-buttons .discard-btn:hover {
+            padding: 8px 21px; }
+        .container .content .hand-container .hand .hand-buttons button {
+          width: 100%;
+          text-align: center; }
 
 /*# sourceMappingURL=base.css.map */
