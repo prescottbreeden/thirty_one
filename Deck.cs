@@ -8,7 +8,7 @@ namespace thirty_one
         public Card[] deck;
         public int currentCard;
         public const int NUMBER_OF_CARDS = 52;
-        public static List<Card> DiscardPile = new List<Card>();
+        public static List<Card> discard_pile = new List<Card>();
         public Random ranNum;
 
         public Deck()
@@ -34,14 +34,19 @@ namespace thirty_one
                 deck[second] = temp;
             }
         }
-        public Card DrawCard(int num)
+        public Card DrawFromDeck(int num)
         {
             if (currentCard < NUMBER_OF_CARDS)
                 return deck[currentCard++];
             else
                 return null;
         }
-            
+        
+        public void DrawFromDiscard(Player player)
+        {
+            player.hand.Add(discard_pile[0]);
+            discard_pile.RemoveAt(0);
+        }
 
     }
 }
