@@ -14,13 +14,8 @@ namespace thirty_one
             this.name = name;
             this.tokens = 3;
         }
-        public void DrawCard(Player player, Deck obj)
-        {
-            player.hand.Add(obj.DrawCard(1));
-        }
-        public void DiscardCard(Player player)
-        {
-            Deck.DiscardPile.Add(player.hand[0]);
-        }
+        public static void DrawCardDeck(Player player, Deck obj) => player.hand.Add(obj.DrawFromDeck(1));
+        public static void DrawCardDiscard(Player player, Deck obj) => obj.DrawFromDiscard(player);
+        public static void DiscardCard(Player player, int choice) => Deck.discard_pile.Add(player.hand[choice]);
     }
 }
