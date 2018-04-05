@@ -27,7 +27,7 @@ namespace thirty_one
             }
             
             // fill remainder of table with computer players
-            for(var i = 1; i <= total_players-Players.Count; i++)
+            for(var i = 1; i <= total_players-Players.Count + 1; i++)
             {
                 Players.Add(new Player($"Computer {i}"));
                 System.Console.WriteLine($"Making Player: Computer {i}");
