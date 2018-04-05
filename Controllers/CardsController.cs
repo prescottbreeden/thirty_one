@@ -76,12 +76,20 @@ namespace thirty_one
             {
                 players.Add(player4);
             }
-            ViewBag.player1 = player1;
-            ViewBag.player2 = player2;
-            ViewBag.player3 = player3;
-            ViewBag.player4 = player4;
+            ViewBag.players = new Dictionary<string, Player>();
+            
             ViewBag.NumPlayers = NumPlayers;
-            Game.CreateGame(players);
+            List<Player> Players = Game.CreateGame(players);
+            int i = 1;
+            foreach(var p in Players)
+            {
+                ViewBag.players.Add("player" + i ,p);
+                i++;
+            }
+            foreach(var entry in ViewBag.players)
+            {
+                System.Console.WriteLine(entry);
+            }
             // End Intitializing
 
             // Hands

@@ -18,18 +18,18 @@ namespace thirty_one
 
             // game logic testing below:
 
-            GameInit.GameInitialization();
-            Game.CreateGame(); 
-            Game.PrintAllHands();
-            while(Deck.current_card<52)
-            {
-                Game.PrintAllHandValues();
-                System.Console.WriteLine("--------------------");
-                System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
-                System.Console.WriteLine("--------------------");
-                Game.NextTurn();
+            // GameInit.GameInitialization();
+            // Game.CreateGame(); 
+            // Game.PrintAllHands();
+            // while(Deck.current_card<52)
+            // {
+            //     Game.PrintAllHandValues();
+            //     System.Console.WriteLine("--------------------");
+            //     System.Console.WriteLine("Turn Counter: " + Game.turn_counter);
+            //     System.Console.WriteLine("--------------------");
+            //     Game.NextTurn();
                 
-            }
+            // }
 
         }
         public static IWebHost BuildWebHost(string[] args) =>
