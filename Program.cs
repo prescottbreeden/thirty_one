@@ -20,7 +20,7 @@ namespace thirty_one
             GameInit.GameInitialization();
             List<string> player_names = GameInit.CreatePlayers();
             Game.CreateGame(player_names);
-            while(Deck.current_card<52)
+            while(GameInit.GameStatus == true)
             {
                 System.Console.WriteLine("--------------------");
                 System.Console.WriteLine("Turn Counter: " + Game.turn_counter);

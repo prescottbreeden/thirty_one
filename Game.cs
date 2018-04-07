@@ -18,6 +18,7 @@ namespace thirty_one
         
         public static List<Player> CreateGame(List<string> players)
         {
+            GameInit.GameStatus = true;
             // generate human players in game
             foreach(string player in players)
             {
@@ -66,12 +67,14 @@ namespace thirty_one
         {
              // convert seat number to player array index value
             var current_player_turn = Players[next_turn-1];
+            System.Console.WriteLine($"Knocked: {current_player_turn.knocked}");
             if (current_player_turn.knocked == true)
             {
+                System.Console.WriteLine("Entered true condition");
                 EndRound(current_player_turn);
                 return;
             }
-            System.Console.WriteLine($"{current_player_turn}");
+            System.Console.WriteLine($"{current_player_turn.name}");
             System.Console.WriteLine("--");
             Deck.ShowDiscardPile();
             System.Console.WriteLine("--");
@@ -139,7 +142,6 @@ namespace thirty_one
 
                 // Evaluate value of current hand
                 Player.CalculateHandValue(current_player_turn);
-                System.Console.WriteLine(current_player_turn.hand_value);
 
                 // choose card to discard
                 if (current_player_turn.num_suits.Max() == 4)
@@ -152,7 +154,7 @@ namespace thirty_one
                     }
                     Deck.discard_pile.Insert(0, min);
                     current_player_turn.hand.Remove(min);
-                    System.Console.WriteLine($"{current_player_turn.name} discarded {min}");  
+                    System.Console.WriteLine($"{current_player_turn.name} discarded {Deck.discard_pile[0]}");  
                 }
                 else if (current_player_turn.num_suits.Max() == 3)
                 {
@@ -175,7 +177,7 @@ namespace thirty_one
                 }
 
                 //knock check
-                if (current_player_turn.hand_value > 20)
+                if (current_player_turn.hand_value > 25)
                 {
                     Knock(current_player_turn);
                 }
@@ -232,7 +234,7 @@ namespace thirty_one
                     Deck.discard_pile.Insert(0, player.hand[player_choice]);
                     player.hand.Remove(player.hand[player_choice]);
                     System.Console.WriteLine($"{player.name} discarded {Deck.discard_pile[0]}.");
-                    // System.Console.WriteLine($"{player.name}'s hand value is now {player.hand_value}.");
+                    System.Console.WriteLine($"{player.name}'s hand value is now {player.hand_value}.");
                 }
         }
         public static void Knock(Player knocker)
@@ -255,6 +257,7 @@ namespace thirty_one
         }
         public static void EndRound(Player knocker)
         {
+            System.Console.WriteLine("Entered 'End Round' Ivocation");
             foreach (Player player in Players)
             {
                 if (player != knocker)
@@ -282,6 +285,20 @@ namespace thirty_one
                     }
                 }
             }
+            System.Console.WriteLine("##########################");
+            System.Console.WriteLine($"##### Knocker had {knocker.hand_value} #####");
+            System.Console.WriteLine("##########################");
+            System.Console.WriteLine("\n");
+            System.Console.WriteLine("\n");
+            System.Console.WriteLine(@" /-------------------------------\");                
+            System.Console.WriteLine(@"| ****** Results from Game ****** |");
+            System.Console.WriteLine(@" \-------------------------------/");
+            System.Console.WriteLine("|    Name    | Hand Value | Tokens |");
+            foreach(Player p in Players)
+            {
+                System.Console.WriteLine($"{p.name}  -  {p.hand_value}  -  {p.tokens}");
+            }
+            GameInit.GameStatus = false;
             GameInit.MainMenu();
         }
         public static void PrintAllHands()
